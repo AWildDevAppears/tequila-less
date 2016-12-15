@@ -1,0 +1,118 @@
+.display-flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.display-inline-flex {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+.flex-wrap(@wrap) when (@wrap = true) {
+    // No Webkit Box fallback.
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.flex-wrap(@wrap) when (@wrap = false) {
+    // No Webkit Box fallback.
+    -webkit-flex-wrap: no-wrap;
+    -moz-flex-wrap: no-wrap;
+    -ms-flex-wrap: none;
+    flex-wrap: no-wrap;
+}
+
+.flex(@fg: 1, @fs: ~'', @fb: ~'') {
+    -webkit-box-flex: @fg;
+    -webkit-flex: @fg @fs @fb;
+    -moz-box-flex: @fg;
+    -moz-flex: @fg @fs @fb;
+    flex: @fg @fs @fb;
+    -ms-flex: @fg @fs @fb; // IE fix: flex exists in some instances, it just doesn't work
+}
+
+
+.flex-order(@value) {
+    -webkit-order: @value;
+    -moz-order: @value;
+    -ms-flex-order: @value;
+    order: @value;
+}
+
+// Flex direction
+.flex-direction(@direction) when (@direction = row-reverse) {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: horizontal;
+}
+
+.flex-direction(@direction) when (@direction = column) {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+}
+
+.flex-direction(@direction) when (@direction = column-reverse) {
+    -webkit-box-direction: reverse;
+    -webkit-box-orient: vertical;
+}
+
+.flex-direction(@idrection) when not (@direction = row-reverse) and not (@direction = column) and not (@direction = column-reverse) {
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+}
+
+.flex-direction(@direction) {
+    -webkit-flex-direction: @direction;
+    -moz-flex-direction: @direction;
+    -ms-flex-direction: @direction;
+    flex-direction: @direction;
+}
+
+
+// END flex direction
+
+.align-items(@value: stretch) when (@value = flex-start) {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+
+}
+
+.align-items(@value: stretch) when (@value = flex-end) {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+}
+
+.align-items(@value: stretch) when not (@value = flex-start) and not (@value = flex-end) {
+    -webkit-box-align: @value;
+    -ms-flex-align: @value;
+}
+
+.align-items(@value: stretch) {
+    align-items: @value;
+}
+
+.align-flex-self(@value: auto) {
+    -webkit-align-self: @value;
+    -moz-align-self: @value;
+    align-self: @value;
+}
+
+.align-flex-self(@value: auto) when (@value = flex-start) {
+    -ms-flex-item-align: start;
+}
+
+.align-flex-self(@value: auto) when (@value = flex-end) {
+    -ms-flex-item-align: end;
+}
+
+.align-flex-self(@value: auto) when not (@value = flex-end) and not (@value = flex-start) {
+    -ms-flex-item-align: @value;
+}
